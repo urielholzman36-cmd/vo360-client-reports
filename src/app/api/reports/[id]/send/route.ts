@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getReportById, updateReportSent } from "@/lib/db/queries";
 import { sendReportEmail } from "@/lib/email-sender";
 import { buildReportFilename } from "@/lib/pdf-builder";
@@ -20,8 +22,13 @@ export async function POST(
     return NextResponse.json({ error: "PDF not built yet" }, { status: 404 });
   }
 
-  const pdfRes = await fetch(report.blob_url);
-  const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
+  let pdfBuffer: Buffer;
+  if (report.blob_url.startsWith("/output/")) {
+    pdfBuffer = readFileSync(join(process.cwd(), "public", report.blob_url));
+  } else {
+    const pdfRes = await fetch(report.blob_url);
+    pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
+  }
   const rawData = report.raw_data_json ? JSON.parse(report.raw_data_json) : {};
   const filename = buildReportFilename(report.business_name, rawData.period_label ?? report.report_month);
 
