@@ -1,0 +1,10 @@
+{
+  "niche": "roofing",
+  "contactsDaysAgo": [8,18,26],
+  "opportunityStageMovesDaysAgo": [9],
+  "conversationLastInboundDaysAgo": [6,11],
+  "conversationLastOutboundDaysAgo": [6,12],
+  "avgResponseMinutes": 720,
+  "appointmentStartDaysAgo": [11],
+  "reviewRequestsSent": 1
+}

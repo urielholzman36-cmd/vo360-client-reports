@@ -1,0 +1,10 @@
+{
+  "niche": "electrical",
+  "contactsDaysAgo": [4,10,15,22,28],
+  "opportunityStageMovesDaysAgo": [6,20],
+  "conversationLastInboundDaysAgo": [5,8,11],
+  "conversationLastOutboundDaysAgo": [5,9,12],
+  "avgResponseMinutes": 480,
+  "appointmentStartDaysAgo": [6,14,22],
+  "reviewRequestsSent": 3
+}

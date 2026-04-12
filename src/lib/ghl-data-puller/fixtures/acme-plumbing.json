@@ -1,0 +1,10 @@
+{
+  "niche": "plumbing",
+  "contactsDaysAgo": [1,2,3,5,6,7,9,10,12,14,16,18,20,22,25,28],
+  "opportunityStageMovesDaysAgo": [1,3,5,8,12,17,22,27],
+  "conversationLastInboundDaysAgo": [0,1,1,2,2,3],
+  "conversationLastOutboundDaysAgo": [0,1,1,2,2,3],
+  "avgResponseMinutes": 45,
+  "appointmentStartDaysAgo": [1,3,6,9,13,17,22,26],
+  "reviewRequestsSent": 12
+}

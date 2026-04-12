@@ -1,0 +1,10 @@
+{
+  "niche": "hvac",
+  "contactsDaysAgo": [3,10,18,25],
+  "opportunityStageMovesDaysAgo": [4,18],
+  "conversationLastInboundDaysAgo": [1,2,3,4],
+  "conversationLastOutboundDaysAgo": [1,2,3,4],
+  "avgResponseMinutes": 150,
+  "appointmentStartDaysAgo": [5,14],
+  "reviewRequestsSent": 0
+}
