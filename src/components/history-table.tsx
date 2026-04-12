@@ -37,7 +37,7 @@ export function HistoryTable() {
   return (
     <div className="space-y-4">
       <div className="flex gap-4">
-        <Select value={filterClient} onValueChange={setFilterClient}>
+        <Select value={filterClient} onValueChange={(v: string | null) => setFilterClient(v ?? "all")}>
           <SelectTrigger className="w-[200px] glass-card border-white/10 text-white">
             <SelectValue placeholder="All clients" />
           </SelectTrigger>
@@ -49,7 +49,7 @@ export function HistoryTable() {
           </SelectContent>
         </Select>
 
-        <Select value={filterSent} onValueChange={setFilterSent}>
+        <Select value={filterSent} onValueChange={(v: string | null) => setFilterSent(v ?? "all")}>
           <SelectTrigger className="w-[150px] glass-card border-white/10 text-white">
             <SelectValue placeholder="All status" />
           </SelectTrigger>

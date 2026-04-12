@@ -30,7 +30,7 @@ export function MonthPicker({ startMonth, onSelect }: Props) {
   }
 
   return (
-    <Select onValueChange={onSelect}>
+    <Select onValueChange={(v: string | null) => { if (v) onSelect(v); }}>
       <SelectTrigger className="w-full glass-card border-white/10 text-white">
         <SelectValue placeholder="Select month..." />
       </SelectTrigger>

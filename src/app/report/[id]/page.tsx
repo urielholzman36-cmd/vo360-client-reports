@@ -114,9 +114,12 @@ export default function ReportPage({ params }: { params: Promise<{ id: string }>
             </Badge>
           ) : blobUrl ? (
             <>
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10" asChild>
-                <a href={`/api/reports/${id}/download`}>Download PDF</a>
-              </Button>
+              <a
+                href={`/api/reports/${id}/download`}
+                className="inline-flex items-center justify-center rounded-md border border-white/20 px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+              >
+                Download PDF
+              </a>
               <Button onClick={() => setShowSend(true)} className="bg-vo360-orange hover:bg-vo360-orange/90 text-white">
                 Send via Email
               </Button>

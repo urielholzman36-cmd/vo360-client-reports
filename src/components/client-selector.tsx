@@ -27,7 +27,8 @@ export function ClientSelector({ onSelect }: Props) {
 
   return (
     <Select
-      onValueChange={(val) => {
+      onValueChange={(val: string | null) => {
+        if (!val) return;
         const client = clients.find((c) => c.id === val) ?? null;
         onSelect(client);
       }}
