@@ -29,16 +29,18 @@ export async function buildReportPdf(input: BuildPdfInput): Promise<Buffer> {
     const leftX = BRAND.page.margins.left;
     const dateStr = new Date().toISOString().split("T")[0];
 
+    let addingPage = false;
     doc.on("pageAdded", () => {
+      if (addingPage) return;
+      addingPage = true;
       drawHeaderBar(doc, dateStr);
-      drawFooter(doc);
       doc.x = leftX;
       doc.y = 100;
+      addingPage = false;
     });
 
     // PAGE 1: Cover + Executive Summary
     drawHeaderBar(doc, dateStr);
-    drawFooter(doc);
 
     doc.moveDown(4);
     doc.font(BRAND.fonts.heading).fontSize(26).fillColor(BRAND.colors.navy)
