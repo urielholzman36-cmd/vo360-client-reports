@@ -17,19 +17,16 @@ export async function GET(
   const rawData = report.raw_data_json ? JSON.parse(report.raw_data_json) : {};
   const filename = buildReportFilename(report.business_name, rawData.period_label ?? report.report_month);
 
-  let pdfBuffer: ArrayBuffer;
+  let pdfBuffer: Buffer | ArrayBuffer;
 
   if (report.blob_url.startsWith("/output/")) {
-    // Local dev: read from public/output/
-    const filePath = join(process.cwd(), "public", report.blob_url);
-    pdfBuffer = readFileSync(filePath);
+    pdfBuffer = readFileSync(join(process.cwd(), "public", report.blob_url));
   } else {
-    // Production: fetch from Vercel Blob URL
     const pdfRes = await fetch(report.blob_url);
     pdfBuffer = await pdfRes.arrayBuffer();
   }
 
-  return new NextResponse(pdfBuffer, {
+  return new NextResponse(Buffer.from(pdfBuffer), {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${filename}"`,

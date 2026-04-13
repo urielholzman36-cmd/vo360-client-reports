@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Generated report PDFs (local dev)
 public/output/
+.env*.local
