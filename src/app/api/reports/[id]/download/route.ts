@@ -17,16 +17,18 @@ export async function GET(
   const rawData = report.raw_data_json ? JSON.parse(report.raw_data_json) : {};
   const filename = buildReportFilename(report.business_name, rawData.period_label ?? report.report_month);
 
-  let pdfBuffer: Buffer | ArrayBuffer;
-
   if (report.blob_url.startsWith("/output/")) {
-    pdfBuffer = readFileSync(join(process.cwd(), "public", report.blob_url));
-  } else {
-    const pdfRes = await fetch(report.blob_url);
-    pdfBuffer = await pdfRes.arrayBuffer();
+    const fileData = readFileSync(join(process.cwd(), "public", report.blob_url));
+    return new Response(fileData, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="${filename}"`,
+      },
+    });
   }
 
-  return new NextResponse(Buffer.from(pdfBuffer), {
+  const pdfRes = await fetch(report.blob_url);
+  return new Response(pdfRes.body, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${filename}"`,
